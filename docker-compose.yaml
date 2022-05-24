@@ -1,43 +1,17 @@
 version: '3.8'
 services:
-  db:
-    container_name: db-service
+  postgres:
+    container_name: db
     image: postgres:14.3
-    restart: unless-stopped
+    restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=seenthis
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
-      - '5432:5432'
-    networks:
-      - backend
+      - '5632:5432'
     expose:
       - 5432
     volumes:
-      - db:/var/lib/postgresql/data
-  api:
-    build:
-      context: ./api
-      dockerfile: ../Dockerfile
-    container_name: api-service
-    depends_on:
-      - db
-    ports:
-      - "4000:4000"
-    expose:
-      - 4000
-    env_file:
-      - .env
-    networks:
-      - backend
-    links:
-      - db
-    volumes:
-      - './:/src/app'
-
+      - db_data:/var/lib/postgresql/data
 volumes:
-  db:
-    driver: local
-networks:
-  backend: {}
+  db_data: {}
