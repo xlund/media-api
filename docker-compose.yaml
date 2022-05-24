@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  db:
+    container_name: db-service
+    image: postgres:14.3
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=prisma
+      - POSTGRES_PASSWORD=prisma
+      - POSTGRES_DB=prisma
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+    expose:
+      - 5432
+    volumes:
+      - db:/var/lib/postgresql/data
+  api:
+    build:
+      context: ./api
+      dockerfile: ../Dockerfile
+    container_name: api-service
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    expose:
+      - 4000
+    env_file:
+      - .env
+    networks:
+      - backend
+    links:
+      - db
+    volumes:
+      - './:/src/app'
+
+volumes:
+  db:
+    driver: local
+networks:
+  backend: {}
