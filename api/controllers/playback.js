@@ -14,15 +14,19 @@ const register = async (req, res, next) => {
       },
     });
     if (vid.playback == null || vid.playback == undefined) {
-      const playback = await prisma.playback.create({
-        data: {
-          videoId,
-          time,
-        },
-      });
-      res.status(200).send({ playbackId: playback.id });
+      const playback = await prisma.playback
+        .create({
+          data: {
+            videoId,
+            time,
+          },
+        })
+        .then((data) => {
+          res.status(200).send({ playbackId: data.id });
+        });
+    } else {
+      res.status(200).send({ playbackId: vid.playback.id });
     }
-    res.status(200).send({ playbackId: vid.playback.id });
     await prisma.$disconnect();
   } catch (e) {
     next(e);
