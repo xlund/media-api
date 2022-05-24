@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const imgJson = require("../../utils/images.json");
 const vidJson = require("../../utils/videos.json");
-const getFilename = require("../../utils/utils");
+const { getFilename } = require("../../utils/utils");
 const prisma = new PrismaClient();
 
 async function seed() {
@@ -10,6 +10,7 @@ async function seed() {
     imgJson.map(async (imgData) => {
       const { id, title, description, origin } = imgData;
       const filename = getFilename(origin);
+
       try {
         await prisma.image.create({
           data: {
