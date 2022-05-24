@@ -16,6 +16,7 @@ async function fetchImages() {
         return;
       }
       try {
+        console.log(`Start download of img ${id}`);
         const image = await axios.get(origin, { responseType: "stream" });
         const file = fs.createWriteStream(_path);
         image.data.pipe(file);
@@ -37,20 +38,20 @@ async function fetchVideos() {
   await Promise.all(
     videos.map(async (vidData) => {
       const { id, origin } = vidData;
+      const filename = getFilename(origin);
+      const _path = path.resolve("public/videos/" + filename);
+      if (fileExist(_path)) {
+        console.log(`${filename} already exists in /public`);
+        return;
+      }
       try {
-        const filename = getFilename(origin);
-        const _path = path.resolve("public/videos/" + filename);
-        if (fileExist(_path)) {
-          console.log(`${filename} already exists in /public`);
-          return;
-        }
-        console.log(`Begin download of video: ${id}`);
+        console.log(`Downloding movie ${filename} [ID: ${id}]`);
         const video = await axios.get(origin, { responseType: "stream" });
         const file = fs.createWriteStream(_path);
         video.data.pipe(file);
 
         file.on("finish", async () => {
-          console.log(`✨ Video ${id} saved to public/videos as ${filename}`);
+          console.log(`🍿 Video ${id} saved to public/videos as ${filename}`);
           Promise.resolve();
           file.close();
         });
