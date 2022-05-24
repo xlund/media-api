@@ -21,7 +21,6 @@ async function seed() {
         });
       } catch (e) {
         console.log(e);
-        file.close();
       }
     })
   );
