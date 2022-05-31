@@ -17,6 +17,7 @@
 
 	.image {
 		height: 200px;
-		width: auto;
+		object-fit: cover;
+		width: 100%;
 	}
 </style>
