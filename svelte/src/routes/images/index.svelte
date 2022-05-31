@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ImageCard from '$lib/image/ImageCard.svelte';
+	import Card from '$lib/ui/Card.svelte';
 	import type { Image } from 'src/types/types';
 	export let images: Image[];
 </script>
@@ -13,7 +13,7 @@
 	<h1>Images</h1>
 	<div class="grid">
 		{#each images as image (image.id)}
-			<ImageCard {image} />
+			<Card data={image} />
 		{/each}
 	</div>
 </div>

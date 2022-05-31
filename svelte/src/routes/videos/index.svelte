@@ -1,6 +1,7 @@
 <script lang="ts">
-	import VideoCard from '$lib/video/VideoCard.svelte';
+	import Card from '$lib/ui/Card.svelte';
 	import type { Video } from 'src/types/types';
+
 	export let videos: Video[];
 </script>
 
@@ -12,7 +13,7 @@
 	<h1>Videos</h1>
 	<div class="grid">
 		{#each videos as video (video.id)}
-			<VideoCard {video} />
+			<Card data={video} type="video" />
 		{/each}
 	</div>
 </div>
