@@ -10,7 +10,7 @@ router.get("/images", image.getList);
 router.get("/images/:id", image.getSingle);
 router.get("/videos", video.getList);
 router.get("/videos/:id", video.stream);
-router.get("/videos/single/:id", video.stream);
+router.get("/videos/single/:id", video.getSingle);
 router.get("/videos/posters/:id", video.getPoster);
 router.get("/videos/playing", video.getPlaying);
 router.post("/videos/playing", video.setPlaying);

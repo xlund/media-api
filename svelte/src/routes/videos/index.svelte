@@ -13,7 +13,9 @@
 	<h1>Videos</h1>
 	<div class="grid">
 		{#each videos as video (video.id)}
-			<Card data={video} type="video" />
+			<a href={`/videos/${video.id}`}>
+				<Card data={video} type="video" />
+			</a>
 		{/each}
 	</div>
 </div>

@@ -15,7 +15,7 @@ const getList = async (req, res, next) => {
 const getSingle = async (req, res, next) => {
   const id = parseInt(req.params.id);
   try {
-    const video = await prisma.video.single({ where: { id } });
+    const video = await prisma.video.findUnique({ where: { id } });
     res.status(200).send(video);
     await prisma.$disconnect();
   } catch (e) {
