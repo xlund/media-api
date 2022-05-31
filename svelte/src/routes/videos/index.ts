@@ -1,4 +1,4 @@
-import { api } from './_api';
+import { api } from '../../helpers/_api';
 import type { RequestHandler } from './__types';
 
 export const get: RequestHandler = async () => {
