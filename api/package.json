@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fetch": "node ./utils/fetchStatics.js",
+    "fetchImg": "node -e require('./utils/getStatics.js').fetchImages()",
+    "fetchVid": "node -e require('./utils/getStatics.js').fetchVideos()",
+    "fetchPoster": "node -e \"require('./utils/getStatics.js').fetchPosters()\"",
     "serve": "nodemon index.js",
     "start": "node index.js",
     "setup": "npx prisma generate && npx prisma db push && npx prisma db seed && npm run fetch && npm run start"

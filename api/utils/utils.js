@@ -1,7 +1,7 @@
 const fs = require("fs");
 module.exports = {
   getFilename: function (origin) {
-    return origin.split("/").pop();
+    return origin.split("/").pop().replace("File:", "");
   },
   fileExist: function (path) {
     try {

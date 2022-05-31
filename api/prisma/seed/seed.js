@@ -28,8 +28,10 @@ async function seed() {
   // Seed videos
   Promise.all(
     vidJson.map(async (vidData) => {
-      const { id, title, description, origin, length } = vidData;
+      const { id, title, description, origin, length, poster } = vidData;
       const filename = getFilename(origin);
+      const posterFile = getFilename(poster);
+
       try {
         await prisma.video.create({
           data: {
@@ -38,6 +40,7 @@ async function seed() {
             description,
             playLength: length,
             filename,
+            poster: posterFile,
           },
         });
       } catch (e) {

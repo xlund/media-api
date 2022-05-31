@@ -24,6 +24,7 @@ model Video {
     description String
     filename    String
     playLength  Int
+    poster      String
     playback    Playback?
 }
 

@@ -5,7 +5,7 @@ const images = require("./images.json");
 const videos = require("./videos.json");
 const { fileExist, getFilename } = require("./utils.js");
 
-async function fetchImages() {
+module.exports.fetchImages = async () => {
   await Promise.all(
     images.map(async (imgData) => {
       const { id, origin } = imgData;
@@ -32,9 +32,40 @@ async function fetchImages() {
       }
     })
   );
-}
+};
 
-async function fetchVideos() {
+module.exports.fetchPosters = async () => {
+  await Promise.all(
+    videos.map(async (imgData) => {
+      const { id, poster } = imgData;
+      const filename = getFilename(poster);
+      const _path = path.resolve("public/videos/posters/" + filename);
+      if (fileExist(_path)) {
+        console.log(`${filename} already exists in /public/videos/posters`);
+        return;
+      }
+      try {
+        console.log(`Start download of poster for video ${id}`);
+        const image = await axios.get(poster, { responseType: "stream" });
+        const file = fs.createWriteStream(_path);
+        image.data.pipe(file);
+
+        file.on("finish", async () => {
+          console.log(
+            `✨ Poster for movie ${id} saved to public/videos/posters as ${filename}`
+          );
+          Promise.resolve();
+          file.close();
+        });
+      } catch (e) {
+        console.log(e);
+        file.close();
+      }
+    })
+  );
+};
+
+module.exports.fetchVideos = async () => {
   await Promise.all(
     videos.map(async (vidData) => {
       const { id, origin } = vidData;
@@ -61,7 +92,4 @@ async function fetchVideos() {
       }
     })
   );
-}
-
-fetchImages();
-fetchVideos();
+};
