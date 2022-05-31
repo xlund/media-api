@@ -8,9 +8,9 @@
 	(The data on the todo app will expire periodically; no
 	guarantees are made. Don't use it to organise your life.)
 */
-
+const base = 'http://0.0.0.0:4000/api';
 export function api(method: string, resource: string, data?: Record<string, unknown>) {
-	return fetch(`${process.env.BASE_API}/${resource}`, {
+	return fetch(`${base}/${resource}`, {
 		method,
 		headers: {
 			'content-type': 'application/json'
