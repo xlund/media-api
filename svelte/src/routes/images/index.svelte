@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ImageCard from '$lib/image/ImageCard.svelte';
-	import type { Image } from 'src/types';
+	import type { Image } from 'src/types/types';
 	export let images: Image[];
 </script>
 

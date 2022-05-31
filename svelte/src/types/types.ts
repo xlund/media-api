@@ -20,10 +20,4 @@ interface Playback {
 	video: Video;
 }
 
-enum CardType {
-	IMAGE = 'image',
-	VIDEO = 'video'
-}
-
 export type { File, Image, Video, Playback };
-export { CardType };
