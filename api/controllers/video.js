@@ -52,9 +52,35 @@ const getPoster = async (req, res, next) => {
     next(e);
   }
 };
+const getPlaying = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  try {
+    const playing = await prisma.playing.findUnique({ where: { id } });
+    const video = await prisma.video.where({ id: playing.videoId });
+    res.status(200).send({ video });
+  } catch (e) {
+    next(e);
+  }
+};
+const setPlaying = async (req, res, next) => {
+  console.log(req.body);
+  const videoId = parseInt(req.body.videoId);
+  try {
+    await prisma.playing.upsert({
+      where: { id: 1 },
+      update: { videoId },
+      create: { videoId },
+    });
+    res.status(200).send("OK");
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = {
   getList,
   getSingle,
   getPoster,
+  getPlaying,
+  setPlaying,
 };

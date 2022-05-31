@@ -26,11 +26,18 @@ model Video {
     playLength  Int
     poster      String
     playback    Playback?
+    playing     Playing?
 }
 
 model Playback {
     id      Int   @id @default(autoincrement())
     videoId Int   @unique
     time    Int
+    video   Video @relation(fields: [videoId], references: [id])
+}
+
+model Playing {
+    id      Int   @id @default(autoincrement())
+    videoId Int   @unique
     video   Video @relation(fields: [videoId], references: [id])
 }

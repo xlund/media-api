@@ -1,6 +1,20 @@
 <script lang="ts">
 	import type { Video } from 'src/types/base';
 	export let videos: Video[];
+
+	async function setPlaying(id: number) {
+		const res = await fetch('http://localhost:4000/api/videos/playing/', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify({
+				videoId: id
+			})
+		});
+		const data = await res.text();
+		console.log(data);
+	}
 </script>
 
 <svelte:head>
@@ -11,7 +25,7 @@
 	<h1>Videos</h1>
 	<div class="grid">
 		{#each videos as video (video.id)}
-			<div class="card">
+			<div class="card" on:click={() => setPlaying(video.id)}>
 				<picture>
 					<img class="image" src={`http://0.0.0.0:4000/api/videos/posters/${video.id}`} alt="" />
 				</picture>

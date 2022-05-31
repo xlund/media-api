@@ -11,6 +11,8 @@ router.get("/images/:id", image.getSingle);
 router.get("/videos", video.getList);
 router.get("/videos/:id", video.getSingle);
 router.get("/videos/posters/:id", video.getPoster);
+router.get("/videos/playing", video.getPlaying);
+router.post("/videos/playing", video.setPlaying);
 router.post("/videos/:id/playback", playback.register);
 router.put("/videos/:id/playback/:playbackId", playback.update);
 router.get("/videos/:id/playback/:playbackId", playback.get);
