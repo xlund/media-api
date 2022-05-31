@@ -1,6 +1,6 @@
 <script lang="ts">
 	import VideoCard from '$lib/video/VideoCard.svelte';
-	import type { Video } from 'src/types/base';
+	import { CardType, type Video } from 'src/types';
 	export let videos: Video[];
 </script>
 

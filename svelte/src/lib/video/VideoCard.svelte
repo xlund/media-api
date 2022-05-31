@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { Video } from 'src/types/base';
+	import type { Video } from 'src/types';
+
 	export let video: Video;
 
 	async function setPlaying(id: number) {

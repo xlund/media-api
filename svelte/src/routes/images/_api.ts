@@ -9,10 +9,8 @@
 	guarantees are made. Don't use it to organise your life.)
 */
 
-const base = 'http://0.0.0.0:4000/api';
-
 export function api(method: string, resource: string, data?: Record<string, unknown>) {
-	return fetch(`${base}/${resource}`, {
+	return fetch(`${process.env.BASE_API}/${resource}`, {
 		method,
 		headers: {
 			'content-type': 'application/json'
