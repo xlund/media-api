@@ -10,6 +10,7 @@ export type Image = File
 export interface Video extends File {
     playLength: number;
     playback?: Playback;
+    poster: string;
 }
 
 export interface Playback {

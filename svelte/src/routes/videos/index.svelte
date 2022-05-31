@@ -12,6 +12,9 @@
 	<div class="grid">
 		{#each videos as video (video.id)}
 			<div class="card">
+				<picture>
+					<img class="image" src={`http://0.0.0.0:4000/api/videos/posters/${video.id}`} alt="" />
+				</picture>
 				<h2 class="title">{video.title}</h2>
 			</div>
 		{/each}
@@ -28,6 +31,11 @@
 
 	.title {
 		font-weight: 500;
+	}
+
+	.image {
+		height: 200px;
+		width: auto;
 	}
 
 	.grid {
