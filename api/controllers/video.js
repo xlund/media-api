@@ -13,6 +13,16 @@ const getList = async (req, res, next) => {
   }
 };
 const getSingle = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  try {
+    const video = await prisma.video.single({ where: { id } });
+    res.status(200).send(video);
+    await prisma.$disconnect();
+  } catch (e) {
+    next(e);
+  }
+};
+const stream = async (req, res, next) => {
   const range = req.headers.range;
   if (!range) {
     res.status(400).send("Requires Range header");
@@ -78,8 +88,9 @@ const setPlaying = async (req, res, next) => {
 };
 
 module.exports = {
-  getList,
+  stream,
   getSingle,
+  getList,
   getPoster,
   getPlaying,
   setPlaying,
