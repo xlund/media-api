@@ -43,7 +43,18 @@ const getSingle = async (req, res, next) => {
   }
 };
 
+const getPoster = async (req, res, next) => {
+  const id = parseInt(req.params.id);
+  try {
+    const img = await prisma.video.findUnique({ where: { id } });
+    res.sendFile(path.resolve("public/videos/posters/" + img.poster));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getList,
   getSingle,
+  getPoster,
 };

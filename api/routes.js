@@ -10,6 +10,7 @@ router.get("/images", image.getList);
 router.get("/images/:id", image.getSingle);
 router.get("/videos", video.getList);
 router.get("/videos/:id", video.getSingle);
+router.get("/videos/posters/:id", video.getPoster);
 router.post("/videos/:id/playback", playback.register);
 router.put("/videos/:id/playback/:playbackId", playback.update);
 router.get("/videos/:id/playback/:playbackId", playback.get);
