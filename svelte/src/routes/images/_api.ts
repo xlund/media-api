@@ -9,7 +9,7 @@
 	guarantees are made. Don't use it to organise your life.)
 */
 
-const base = 'http://localhost:4000/api';
+const base = 'http://0.0.0.0:4000/api';
 
 export function api(method: string, resource: string, data?: Record<string, unknown>) {
 	return fetch(`${base}/${resource}`, {
