@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+	import Indicator from '$lib/ui/Indicator.svelte';
 	import type { Video } from 'src/types/types';
 	export let video: Video;
 </script>
@@ -40,8 +41,7 @@
 				<p>You have not played this video.</p>
 			{/if}
 			{#if video.playback}
-				<div class="playback" />
-				<p>{video.playback.time}</p>
+				<Indicator position={video.playback.time} length={video.playLength} />
 			{/if}
 		</div>
 	</div>
