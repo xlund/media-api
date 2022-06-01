@@ -9,10 +9,6 @@
 	<slot />
 </main>
 
-<footer>
-	<p>Svelte is amazing</p>
-</footer>
-
 <style>
 	main {
 		flex: 1;
