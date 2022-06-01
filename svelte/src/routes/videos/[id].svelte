@@ -54,7 +54,7 @@
 	}
 
 	.wrapper {
-		gap: var(--horisontal-spacing-small);
+		gap: var(--spacing-small);
 	}
 	.content {
 		flex-direction: column;
