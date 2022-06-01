@@ -23,13 +23,19 @@
 	export let video: Video;
 </script>
 
-<div class="wrapper">
-	<picture>
-		<img src={`http://0.0.0.0:4000/api/videos/posters/${video.id}`} alt="" class="poster" />
-	</picture>
-	<div class="content">
-		<h1>{video.title}</h1>
-		<p>{video.description}</p>
+<div class="video">
+	<div class="wrapper">
+		<picture>
+			<img
+				src={`http://0.0.0.0:4000/api/videos/posters/${video.id}`}
+				alt="Poster for {video.title}"
+				class="poster"
+			/>
+		</picture>
+		<div class="content">
+			<h1 class="title">{video.title}</h1>
+			<p class="description">{video.description}</p>
+		</div>
 	</div>
 </div>
 
@@ -37,9 +43,11 @@
 	.wrapper,
 	.content {
 		display: flex;
-		gap: 1rem;
 	}
 
+	.wrapper {
+		gap: var(--horisontal-spacing-small);
+	}
 	.content {
 		flex-direction: column;
 		align-items: flex-start;
