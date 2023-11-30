@@ -1,4 +1,6 @@
 # Simple Media Streaming service
+
+An experimentation with streaming video files from a server to the client and remembering the user location in the file. 
 Author: Erik Naslund
 
 ## Installation
