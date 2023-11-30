@@ -1,4 +1,4 @@
-# Seen this application 2022
+# Simple Media Streaming service
 Author: Erik Naslund
 
 ## Installation
